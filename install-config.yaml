@@ -1,30 +1,26 @@
 apiVersion: v1
 baseDomain: okd.local
 metadata:
-  name: lab
-
+  name: okd4  
 compute:
 - hyperthreading: Enabled
   name: worker
   replicas: 0
-
 controlPlane:
   hyperthreading: Enabled
   name: master
   replicas: 3
-
 networking:
   clusterNetwork:
-  - cidr: 10.128.0.0/14 
-    hostPrefix: 23 
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
   networkType: OVNKubernetes
-  serviceNetwork: 
+  serviceNetwork:
   - 172.30.0.0/16
-
+  machineNetwork: 
+  - cidr: 192.168.100.0/24
 platform:
   none: {}
-
 fips: false
-
-pullSecret: '{"auths":{"fake":{"auth": ""}}}' 
-sshKey: 'ssh-ed25519 AAAA...'   
+pullSecret: '{"auths":{"fake":{"auth": ""}}}'
+sshKey: '<your-actual-public-ssh-key>'  
